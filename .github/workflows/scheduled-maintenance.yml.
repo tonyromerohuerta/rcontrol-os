@@ -1,0 +1,19 @@
+name: Scheduled Maintenance
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # Runs daily at 2 AM UTC
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Clean logs
+      run: rm -rf logs/*.log
+
+    - name: Update dependencies
+      run: npm update
